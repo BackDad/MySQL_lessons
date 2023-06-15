@@ -40,10 +40,13 @@ VALUES
 ("e04",9.50,"CANCELLED");
 SELECT * FROM orders;
 SELECT id,
-IF (order_status = 'OPEN', 'Order is in open state',
-IF (order_status = 'CLOSED','Order is closed',
-IF (order_status = 'CANCELLED','Order is cancelled', 'Error'
-))) 
-as full_order_status
+CASE
+ 
+WHEN order_status = 'OPEN' THEN 'Order is in open state'
+WHEN order_status = 'CLOSED' THEN 'Order is closed'
+WHEN order_status = 'CANCELLED' THEN 'Order is cancelled'
+ELSE 'Error'
+
+END AS 'full_order_status'
 FROM orders;
 
